@@ -17,15 +17,20 @@ int main(int argc, char **argv)
     double area;
     unsigned int index;
 
-    // --help option to print out some examples of how to execute the application
+    // --help option
     if (argc == 2 && strcmp(argv[1], "--help") == 0)
     {
-        printf("Usage: cl_triangle A B C\r\n");
-        printf("where A B C are integers or decimals with 15 or less decimal places\r\n");
-        printf("Examples:\r\n");
-        printf("cl_triangle 3.5 4.5 5.5\r\n");
-        printf("Output: \r\n");
-        printf("cl_triangle --help: displays this help and exits\r\n\r\n");
+        printf("%s",
+            "Usage: cl_triangle [a] [b] [c]...\r\n"
+            "\r\n"
+            "command line tool for calculating the area of a triangle based on the length of its sides using Heron's formula.\r\n"
+            "\r\n"
+            "Options:\r\n"
+            "  -h, --help             show help\r\n"
+            "\r\n"
+            "Examples:\r\n"
+            "cl_triangle 3.5 4.5 5.5\r\n"
+        );
         return 0;
     }
 
@@ -73,7 +78,7 @@ int main(int argc, char **argv)
     }
     else
     {
-        printf("Info: area = %.*e m^2\n\r", DBL_DECIMAL_DIG, area);
+        printf("Info: area = %.3f m^2\n\r", area);
     }
 
     return 0;

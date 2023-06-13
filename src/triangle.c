@@ -7,9 +7,9 @@
     In the event the sides do not make a valid triangle, the area will be 0.
     Implemented using Heron's formula.
 
-    \param a One of three sides of a triangle.
-    \param b One of three sides of a triangle.
-    \param c One of three sides of a triangle
+    \param a side legnth 1.
+    \param b side legnth 2.
+    \param c side legnth 3.
 */
 double triangle_herons_formula(double a, double b, double c)
 {
