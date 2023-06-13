@@ -1,6 +1,7 @@
 # CL_Triangle
 
-This project contains a basic command line tool for calculating the area of a triangle based on the length of its sides using Heron's formula.
+command line tool for calculating the area of a triangle based 
+on the length of its sides using Heron's formula. Units are arbitrary.
 
 $$ s = {(a + b + c)\over2 } $$
 
@@ -9,15 +10,25 @@ $$ Area = {\sqrt{s(s - a)(s - b)(s - c)}} $$
 Where a, b, and c are the lengths of the sides and s is the semiperimeter of the triangle.
 
 ## Usage
+---
 
 ```
 Usage: cl_triangle [a] [b] [c]...
 
-command line tool for calculating the area of a triangle based on the length of its sides using Heron's formula.
+where [a] [b] [c] are integers or decimals, in standard or exponential notation
 
-Options:
-  -h, --help             show help
+Examples: 
+cl_triangle 3 4 5
+>>> 6.000000e+00
 
+cl_triangle 3.5 4.5 5.5
+>>> 7.854885e+00
+
+cl_triangle 3.54e-15 4.52e-15 5.59e-15
+>>> 7.988918e-30
+
+cl_triangle 3.998e+15 4.322e+15 5.481e+15
+>>> 8.562048e+30
 ```
 
 ## Building from source
@@ -56,6 +67,7 @@ binary location:
 
 ### Windows
 ---
+This project makes use of the POSIX regex library which is not available on windows.
 
 Setting up a visual studio project:
 

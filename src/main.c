@@ -63,5 +63,6 @@ int main(int argc, char **argv)
 
     printf("%e\r\n", area);
 
+    regfree(&regex);
     return 0;
 }
