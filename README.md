@@ -3,6 +3,7 @@
 This project contains a basic command line tool for calculating the area of a triangle based on the length of its sides using Heron's formula.
 
 $$ s = {(a + b + c)\over2 } $$
+
 $$ Area = {\sqrt{s(s - a)(s - b)(s - c)}} $$
 
 Where a, b, and c are the lengths of the sides and s is the semiperimeter of the triangle.
