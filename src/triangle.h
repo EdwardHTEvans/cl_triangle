@@ -1,2 +1,2 @@
 
-double triangle_calculate_area(double a, double b, double c);
+double triangle_herons_formula(double a, double b, double c);
