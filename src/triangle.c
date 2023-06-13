@@ -5,7 +5,7 @@
     \fn double triangle_calculate_area(double a, double b, double c)
     \brief Calculates area of triangle when supplied with three side lengths,
     In the event the sides do not make a valid triangle, the area will be 0.
-    Implemented using Heron's formula.
+    Implemented using Heron's formula. Subject to rounding error.
 
     \param a side legnth 1.
     \param b side legnth 2.
@@ -19,5 +19,6 @@ double triangle_herons_formula(double a, double b, double c)
     s = (a + b + c) / 2;
     s = sqrt(s * (s - a) * (s - b) * (s - c));
     s = isnan(s) ? 0 : s;
+    s = isinf(s) ? 0 : s;
     return s;
 }

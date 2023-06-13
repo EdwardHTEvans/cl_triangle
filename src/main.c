@@ -7,8 +7,8 @@
 
 /*!
     \fn int main(int argc, char **argv)
-    \brief This main function wraps the triangle area calculation utility
-    with a command line interface with sanitised inputs
+    \brief This main function wraps triangle_herons_formula
+    with a command line interface with sanitised inputs.
 */
 int main(int argc, char **argv)
 {
@@ -17,42 +17,25 @@ int main(int argc, char **argv)
     double area;
     unsigned int index;
 
-    // --help option
-    if (argc == 2 && strcmp(argv[1], "--help") == 0)
-    {
-        printf("%s",
-            "Usage: cl_triangle [a] [b] [c]...\r\n"
-            "\r\n"
-            "command line tool for calculating the area of a triangle based on the length of its sides using Heron's formula.\r\n"
-            "\r\n"
-            "Options:\r\n"
-            "  -h, --help             show help\r\n"
-            "\r\n"
-            "Examples:\r\n"
-            "cl_triangle 3.5 4.5 5.5\r\n"
-        );
-        return 0;
-    }
-
     // make sure the user has supplied enough sides
     if (argc < 4)
     {
         printf("Error: missing operands\r\n");
-        return -1;
+        return 0;
     }
 
-    // warn the user to which three sides are to be used in the calculation, 
-    // in the event more then three are supplied
+    // make sure the user has not supplied too many sides
     if (argc > 4)
     {
-        printf("Warning: ignoring extra operands, using first three\r\n");
+        printf("Error: too many operands\r\n");
+        return 0;
     }
 
     // regex compiled to match integers and decimals for input sanitisation
-    if (regcomp(&regex, "^[0-9]+.?[0-9]*", REG_EXTENDED))
+    if (regcomp(&regex, "^[[0-9]+\\.?[0-9]*(e[+-]+[0-9]+)?$", REG_EXTENDED))
     {
         printf("Error: could not compile regex\r\n");
-        return -1;
+        return 0;
     }
 
     // iterate over user supplied sides and check if they are valid integers or decimals
@@ -60,26 +43,25 @@ int main(int argc, char **argv)
     {
         if (regexec(&regex, argv[index], 0, NULL, 0))
         {
-            printf("Error: argument %d [%s] is invalid\n\r", index, argv[index]);
-            return -1;
+            printf("Error: argument %d [%s] is invalid\r\n", index, argv[index]);
+            return 0;
         }
 
         // input is valid, we can now convert it to a double
         sides[index - 1] = atof(argv[index]);
     }
 
-    // actual calculation is done in separate file, for portability sake
+    // actual calculation is done in separate file, for portability
     area = triangle_herons_formula(sides[0], sides[1], sides[2]);
 
-    // triangle is defined by having three edges, an area of 0 means it's a line (one edge)
+    // no area means its not a valid solid polygon
     if (!area)
     {
-        printf("Error: supplied sides do not make a valid triangle\n\r");
+        printf("Error: invalid input\r\n");
+        return 0;
     }
-    else
-    {
-        printf("Info: area = %.3f m^2\n\r", area);
-    }
+
+    printf("%e\r\n", area);
 
     return 0;
 }
