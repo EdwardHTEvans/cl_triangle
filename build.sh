@@ -1,5 +1,5 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-cmake -S . -B ./build
-cd ./build
+cmake -S . -B ./out/build
+cd ./out/build
 make

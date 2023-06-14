@@ -8,3 +8,6 @@ enum check_user_input_state
     EXPONENT_SIGN,
     EXPONENT,
 };
+
+// maximum string length for user input
+#define MAX_USER_INPUT 64

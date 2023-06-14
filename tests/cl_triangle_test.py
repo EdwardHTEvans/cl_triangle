@@ -6,7 +6,7 @@ verbose = False
 
 def run_test(args):
     global verbose
-    call = ["build/cl_triangle"] + args
+    call = ["out/build/cl_triangle"] + args
 
     if verbose:
         print(args, end="\t")
@@ -76,7 +76,6 @@ def main():
     run_test(["foo", "bar", "baz"])
 
     print("# testing missing arguments...")
-    run_test([])
     run_test(["3"])
     run_test(["3", "4"])
 
@@ -99,11 +98,9 @@ def main():
     run_test(["3.0e-6", "0.0e-6", "0.0e-6"])
     run_test(["3.0e-6", "3.0e-6", "0.0e-6"])
 
-
     print("# testing too many and too few arguments...")
     run_test(["3", "4", "5", "6"])
     run_test(["3", "4"])
-
 
 
 if __name__ == "__main__":

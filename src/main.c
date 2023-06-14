@@ -15,22 +15,47 @@
 */
 int main(int argc, char **argv)
 {
+    char user_inputs[3][MAX_USER_INPUT];
+
     long double sides[3];
     long double area;
     unsigned int index;
 
-    // make sure the user has supplied enough sides
-    if (argc < 4)
+    switch (argc)
     {
-        printf("cl_triangle: missing arguments\r\n");
-        return 0;
-    }
+    case 0:
+    case 1:
+        for (index = 0; index < 3;index++)
+        {
+            printf("cl_triangle: please enter side %d:\r\n", index + 1);
+            fgets(user_inputs[index], MAX_USER_INPUT, stdin);
+        }
+        break;
+    case 4:
+        for (index = 0; index < 3;index++)
+        {
+            if (strlen(argv[index]) > MAX_USER_INPUT)
+            {
+                printf("cl_triangle: argument %d [%s] too long, max length is %d\r\n", index, argv[index], MAX_USER_INPUT);
+                return 0;
+            }
+            strcpy(user_inputs[index], argv[index]);
+        }
+    default:
+        // make sure the user has supplied enough sides
+        if (argc < 4)
+        {
+            printf("cl_triangle: missing arguments\r\n");
+            return 0;
+        }
 
-    // make sure the user has not supplied too many sides
-    if (4 < argc)
-    {
-        printf("cl_triangle: too many arguments\r\n");
-        return 0;
+        // make sure the user has not supplied too many sides
+        if (4 < argc)
+        {
+            printf("cl_triangle: too many arguments\r\n");
+            return 0;
+        }
+        break;
     }
 
     // iterate over user supplied sides and check if they are valid integers or decimals
