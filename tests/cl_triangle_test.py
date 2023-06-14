@@ -1,12 +1,40 @@
+import sys
 import random
 import math
 import subprocess
+import os
 
 verbose = False
+test_paths = [
+    ".\\out\\build\\cl_triangle",
+    ".\\out\\build\\x86-Release\\cl_triangle",
+    ".\\out\\build\\x86-Debug\\cl_triangle"
+]
+
+if sys.platform == "linux" or sys.platform == "linux2":
+    test_paths = [
+        "./out/build/cl_triangle",
+    ]
+elif sys.platform == "win32":
+    test_paths = [
+        ".\\out\\build\\x86-Release\\cl_triangle.exe",
+        ".\\out\\build\\x86-Debug\\cl_triangle.exe"
+    ]
+
+bin_path = ""
+for path in test_paths:
+    if (os.path.exists(path)):
+        bin_path = path
+        break
+
+if not bin_path:
+    print("Binary not found")
+    exit()
+
 
 def run_test(args):
-    global verbose
-    call = ["out/build/cl_triangle"] + args
+    global verbose, bin_path
+    call = [bin_path] + args
 
     if verbose:
         print(args, end="\t")

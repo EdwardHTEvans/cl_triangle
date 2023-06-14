@@ -37,12 +37,12 @@ int main(int argc, char **argv)
     case 4:
         for (index = 0; index < 3;index++)
         {
-            if (strlen(argv[index]) > MAX_USER_INPUT)
+            if (strlen(argv[index + 1]) > MAX_USER_INPUT)
             {
                 printf("cl_triangle: argument %d [%s] too long, max length is %d\r\n", index + 1, argv[index], MAX_USER_INPUT);
                 return 0;
             }
-            strcpy(user_inputs[index], argv[index]);
+            strcpy(user_inputs[index], argv[index + 1]);
         }
     default:
         // make sure the user has supplied enough sides
