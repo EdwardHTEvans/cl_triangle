@@ -100,7 +100,7 @@ int main(int argc, char **argv)
 /*!
     \fn int check_user_input(char *input)
     \brief this functions checks the passed string "input" is in a valid
-    integer, decimal, or exponent format, ready to be passed to atof()
+    integer, decimal, or exponent format, ready to be passed to strtold()
     \return returns non-zero if input is invalid
 */
 int check_user_input(char *input)
