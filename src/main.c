@@ -23,6 +23,8 @@ int main(int argc, char **argv)
 
     switch (argc)
     {
+
+    // user supplied no arguments, ask for them
     case 0:
     case 1:
         for (index = 0; index < 3;index++)
@@ -34,9 +36,12 @@ int main(int argc, char **argv)
             user_inputs[index][strcspn(user_inputs[index], "\r\n")] = 0;
         }
         break;
+
+    // user supplied arguments, use them
     case 4:
         for (index = 0; index < 3;index++)
         {
+            // make sure input string can fin in user_inputs
             if (strlen(argv[index + 1]) > MAX_USER_INPUT)
             {
                 printf("cl_triangle: argument %d [%s] too long, max length is %d\r\n", index + 1, argv[index], MAX_USER_INPUT);
@@ -44,6 +49,8 @@ int main(int argc, char **argv)
             }
             strcpy(user_inputs[index], argv[index + 1]);
         }
+        
+    // error cases, either too many or too few arguments
     default:
         // make sure the user has supplied enough sides
         if (argc < 4)
@@ -104,9 +111,9 @@ int check_user_input(char *input)
     // iterate over input string
     for (index = 0; index < strlen(input); index++)
     {
-        // FSM checks 
         switch (state)
         {
+            // numbers leading up to decimal point
             case DIGITS:
                 if (input[index] == '.')
                 {
@@ -118,6 +125,7 @@ int check_user_input(char *input)
                 }
                 break;
 
+            // numbers trailing after decimal point
             case DECIMAL:
                 if (input[index] == 'e')
                 {
@@ -129,6 +137,7 @@ int check_user_input(char *input)
                 }
                 break;
 
+            // exponent support, check sign
             case EXPONENT_SIGN:
                 if (input[index] == '-' || input[index] == '+')
                 {
@@ -140,6 +149,7 @@ int check_user_input(char *input)
                 }
                 break;
 
+            // trailing numbers after exponent
             case EXPONENT:
                 if (!isdigit((unsigned char)input[index]))
                 {
