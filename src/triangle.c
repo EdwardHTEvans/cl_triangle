@@ -2,7 +2,7 @@
 #include <math.h>
 
 /*!
-    \fn double triangle_calculate_area(double a, double b, double c)
+    \fn long double triangle_calculate_area(long double a, long double b, long double c)
     \brief Calculates area of triangle when supplied with three side lengths,
     In the event the sides do not make a valid triangle, the area will be 0.
     Implemented using Heron's formula. Subject to rounding error.
@@ -11,9 +11,9 @@
     \param b side legnth 2.
     \param c side legnth 3.
 */
-double triangle_herons_formula(double a, double b, double c)
+long double triangle_herons_formula(long double a, long double b, long double c)
 {
-    double s;
+    long double s;
 
     // Heron's formula
     s = (a + b + c) / 2;

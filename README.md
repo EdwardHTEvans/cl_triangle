@@ -1,6 +1,6 @@
 # CL_Triangle
 
-command line tool for calculating the area of a triangle based 
+Command line tool for calculating the area of a triangle based 
 on the length of its sides using Heron's formula. Units are arbitrary.
 
 $$ s = {(a + b + c)\over2 } $$
@@ -42,23 +42,31 @@ This project uses cmake to manage cross platform building.
 make sure you have the required build tools.
 
 Debian based distros:
-
 ```
 sudo apt install build-essential snapd
 sudo snap install cmake
 ```
 
 Arch based distros:
-
 ```
 sudo pacman -S base-devel cmake
 ```
 
-Then to generate build files and build the project:
+Clone the repo:
+```
+git clone https://github.com/EdwardHTEvans/cl_triangle
+```
 
+Then to generate build files and build the project:
 ```
 cd cl_triangle
-bash build.sh
+make
+```
+
+Build and run test with
+```
+cd cl_triangle
+make test
 ```
 
 binary location: 
@@ -67,8 +75,12 @@ binary location:
 
 ### Windows
 ---
-This project makes use of the POSIX regex library which is not available on windows.
 
-Setting up a visual studio project:
+Project can be built using visual studio.
 
-building:
+Make sure you have cmake tools installed on visual studio. guide available at: 
+
+https://learn.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170
+
+This guide also shows how to build and run the application.
+
