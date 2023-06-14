@@ -17,6 +17,8 @@ if sys.platform == "linux" or sys.platform == "linux2":
     ]
 elif sys.platform == "win32":
     test_paths = [
+        ".\\out\\build\\x64-Release\\cl_triangle.exe",
+        ".\\out\\build\\x64-Debug\\cl_triangle.exe"
         ".\\out\\build\\x86-Release\\cl_triangle.exe",
         ".\\out\\build\\x86-Debug\\cl_triangle.exe"
     ]
