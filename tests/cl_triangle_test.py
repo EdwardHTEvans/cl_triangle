@@ -80,11 +80,30 @@ def main():
     run_test(["3"])
     run_test(["3", "4"])
 
+    print("# testing extra arguments...")
+    run_test(["3", "4", "5", "6"])
+    run_test(["3", "4", "5", "6", "7"])
+    run_test(["3", "4", "5", "6", "7", "8"])
+
     print("# testing invalid triangles...")
     run_test(["1", "2", "3"])
     run_test(["0", "0", "0"])
     run_test(["3", "0", "0"])
     run_test(["3", "3", "0"])
+    run_test(["1.0", "2.0", "3.0"])
+    run_test(["0.0", "0.0", "0.0"])
+    run_test(["3.0", "0.0", "0.0"])
+    run_test(["3.0", "3.0", "0.0"])
+    run_test(["1.0e-6", "2.0e-6", "3.0e-6"])
+    run_test(["0.0e-6", "0.0e-6", "0.0e-6"])
+    run_test(["3.0e-6", "0.0e-6", "0.0e-6"])
+    run_test(["3.0e-6", "3.0e-6", "0.0e-6"])
+
+
+    print("# testing too many and too few arguments...")
+    run_test(["3", "4", "5", "6"])
+    run_test(["3", "4"])
+
 
 
 if __name__ == "__main__":
