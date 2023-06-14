@@ -27,8 +27,11 @@ int main(int argc, char **argv)
     case 1:
         for (index = 0; index < 3;index++)
         {
-            printf("cl_triangle: please enter side %d:\r\n", index + 1);
+            printf("cl_triangle: please enter length of side %d:\r\n", index + 1);
             fgets(user_inputs[index], MAX_USER_INPUT, stdin);
+
+            // trim user input upto either \r or \n
+            user_inputs[index][strcspn(user_inputs[index], "\r\n")] = 0;
         }
         break;
     case 4:
@@ -36,7 +39,7 @@ int main(int argc, char **argv)
         {
             if (strlen(argv[index]) > MAX_USER_INPUT)
             {
-                printf("cl_triangle: argument %d [%s] too long, max length is %d\r\n", index, argv[index], MAX_USER_INPUT);
+                printf("cl_triangle: argument %d [%s] too long, max length is %d\r\n", index + 1, argv[index], MAX_USER_INPUT);
                 return 0;
             }
             strcpy(user_inputs[index], argv[index]);
@@ -59,16 +62,16 @@ int main(int argc, char **argv)
     }
 
     // iterate over user supplied sides and check if they are valid integers or decimals
-    for (index = 1; index < 4; index++)
+    for (index = 0; index < 3; index++)
     {
-        if (check_user_input(argv[index]))
+        if (check_user_input(user_inputs[index]))
         {
-            printf("cl_triangle: argument %d [%s] is invalid\r\n", index, argv[index]);
+            printf("cl_triangle: argument %d [%s] is invalid\r\n", index + 1, user_inputs[index]);
             return 0;
         }
 
         // input is valid, we can now convert it to a double
-        sides[index - 1] = strtold(argv[index], NULL);
+        sides[index] = strtold(user_inputs[index], NULL);
     }
 
     // actual calculation is done in separate file, for portability
