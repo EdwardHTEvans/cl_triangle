@@ -71,7 +71,7 @@ make test
 
 binary location: 
 <br />
-`${project_dir}/build/cl_triangle`
+`${project_dir}/out/build/cl_triangle`
 
 ### Windows
 ---
